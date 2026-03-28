@@ -23,7 +23,7 @@ function HomePage() {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/fam-hack/">
       <div className="app-container">
         <Navbar />
         <Routes>
