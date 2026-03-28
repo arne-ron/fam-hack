@@ -4,12 +4,10 @@ import EventHero from "./components/EventHero";
 import EventVoting from "./components/EventVoting";
 import Calendar from "./components/Calendar";
 import Availability from "./pages/Availability";
-import "./App.css";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
 import SelectEventPreferences from "./select-event-preferences.tsx";
-import Home from "./Home.tsx";
+import "./App.css";
 
-function Home() {
+function HomePage() {
   return (
     <main className="home-content">
       <div className="main-column">
@@ -29,9 +27,10 @@ function App() {
       <div className="app-container">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/availability" element={<Availability />} />
-          <Route path="/calendar" element={<Home />} /> {/* Placeholder */}
+          <Route path="/calendar" element={<HomePage />} />
+          <Route path="/preferences" element={<SelectEventPreferences />} />
         </Routes>
         <footer className="footer">
           <p>Built with ❤️ for FamHack 2026</p>
@@ -39,23 +38,6 @@ function App() {
       </div>
     </Router>
   );
-    return (
-        <BrowserRouter>
-            <div className="app-container">
-                <Navbar/>
-                <main className="home-content w-full">
-                    <Routes>
-                        <Route path="/" element={<Home />}/>
-                        <Route path="/preferences" element={<SelectEventPreferences />} />
-                    </Routes>
-                </main>
-                <footer className="footer">
-                    <p>Built with ❤️ for FamHack 2026</p>
-                </footer>
-            </div>
-
-        </BrowserRouter>
-    );
 }
 
 export default App;

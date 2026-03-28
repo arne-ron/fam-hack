@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import {Link} from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -23,7 +22,6 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="navbar">
-      {/*<Link to={"/"}>Test</Link>*/}
       <div className="nav-brand">
         <span className="family-name">Family Name</span>
       </div>
@@ -42,18 +40,11 @@ const Navbar: React.FC = () => {
           <NavLink to="/calendar" className={({ isActive }) => isActive ? "active" : ""}>
             Calendar
           </NavLink>
-          <Link to="/" className="active">
-            Home
-          </Link>
         </li>
         <li>
-          <Link to="/availability">Availability</Link>
-        </li>
-        <li>
-          <Link to="/calendar">Calendar</Link>
-        </li>
-        <li>
-          <a href={'/preferences'}>Preferences</a>
+          <NavLink to="/preferences" className={({ isActive }) => isActive ? "active" : ""}>
+            Preferences
+          </NavLink>
         </li>
       </ul>
       <div className="nav-actions">

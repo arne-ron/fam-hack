@@ -1,10 +1,17 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from "@tailwindcss/vite";
 import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
   resolve: {
     alias: {
       'tslib': path.resolve(__dirname, 'node_modules/tslib/tslib.es6.js')
@@ -13,12 +20,4 @@ export default defineConfig({
   optimizeDeps: {
     include: ['tslib', '@microsoft/microsoft-graph-client']
   }
-import tailwindcss from "@tailwindcss/vite";
-
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [
-      react(),
-      tailwindcss(),
-  ],
 })

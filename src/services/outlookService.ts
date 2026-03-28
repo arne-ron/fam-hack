@@ -1,6 +1,7 @@
 import { PublicClientApplication, InteractionRequiredAuthError, type IPublicClientApplication } from "@azure/msal-browser";
 import { Client } from "@microsoft/microsoft-graph-client";
 import { msalConfig, loginRequest } from "../config/authConfig";
+import { findOptimalEventTimes } from "./suggestionAlgorithm";
 
 let msalInstance: IPublicClientApplication | null = null;
 let initPromise: Promise<void> | null = null;
@@ -34,10 +35,7 @@ export const login = async () => {
   try {
     const pca = await getMsalInstance();
     
-    // 1. Check if we are already in the middle of an interaction
-    // Note: In some versions we check PCA state, but usually we just catch the error
-    
-    // 2. Check if we already have an active account in memory
+    // Check if we already have an active account in memory
     const accounts = pca.getAllAccounts();
     if (accounts.length > 0) {
       console.log("Active account found:", accounts[0].username);
@@ -55,10 +53,8 @@ export const login = async () => {
     console.log("Login success:", loginResponse.account.username);
     return loginResponse.account;
   } catch (err: any) {
-    // If an interaction is already in progress, we can't start a new one
     if (err.errorCode === "interaction_in_progress") {
       console.warn("Interaction already in progress. Please check for open popups.");
-      // Optional: You could try to handle this by returning the current account if it exists
       const pca = await getMsalInstance();
       const accounts = pca.getAllAccounts();
       if (accounts.length > 0) return accounts[0];
@@ -121,11 +117,5 @@ export const getCalendarEvents = async (start: string, end: string): Promise<Cal
   }
 };
 
-export const suggestOptimalTimes = (allUsersEvents: CalendarEvent[][], _durationMinutes: number) => {
-  console.log("Running brainstormed algorithm on", allUsersEvents.length, "users' data.");
-  // Placeholder algorithm results
-  return [
-    { start: new Date(Date.now() + 86400000).toISOString().split('T')[0] + "T18:00:00", score: 0.95 },
-    { start: new Date(Date.now() + 172800000).toISOString().split('T')[0] + "T17:30:00", score: 0.82 }
-  ];
-};
+// Re-exporting the algorithm for consistency
+export const suggestOptimalTimes = findOptimalEventTimes;
