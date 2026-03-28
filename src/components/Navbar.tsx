@@ -23,7 +23,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <span className="family-name">Family Name</span>
+        <span className="family-name">Family Portobello</span>
       </div>
       <ul className="nav-links">
         <li>
@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
         <li>
           <NavLink to="/preferences" className={({ isActive }) => isActive ? "active" : ""}>
             Preferences
-          </NavLink>
+          </  NavLink>
         </li>
       </ul>
       <div className="nav-actions">
