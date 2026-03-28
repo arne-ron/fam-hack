@@ -13,6 +13,11 @@ export interface UserSchedule {
  * UPLOADS a user's calendar events to the shared family database.
  */
 export const uploadSchedule = async (schedule: UserSchedule) => {
+  if (!db || !db.app) {
+    console.warn("Firestore not initialized. Skipping upload.");
+    return;
+  }
+
   try {
     const userDocRef = doc(db, "schedules", schedule.userId);
     await setDoc(userDocRef, {
@@ -30,6 +35,11 @@ export const uploadSchedule = async (schedule: UserSchedule) => {
  * FETCHES all family schedules currently stored in the database.
  */
 export const getFamilySchedules = async (): Promise<UserSchedule[]> => {
+  if (!db || !db.app) {
+    console.warn("Firestore not initialized. Returning empty family list.");
+    return [];
+  }
+
   try {
     const schedulesRef = collection(db, "schedules");
     const q = query(schedulesRef);
