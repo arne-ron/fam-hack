@@ -46,5 +46,5 @@ export const graphConfig = {
 
 export const googleConfig = {
   clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-  scopes: "https://www.googleapis.com/auth/calendar.events.readonly",
+  scopes: "https://www.googleapis.com/auth/calendar.events.readonly https://www.googleapis.com/auth/userinfo.email",
 };

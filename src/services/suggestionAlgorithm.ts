@@ -22,7 +22,7 @@ export const findOptimalEventTimes = (
   const suggestions: Suggestion[] = [];
   const now = new Date();
   const searchStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 9, 0, 0); // Start at 9 AM today
-  const searchEnd = new Date(searchStart.getTime() + 7 * 24 * 60 * 60 * 1000); // 7 days window
+  const searchEnd = new Date(searchStart.getTime() + 21 * 24 * 60 * 60 * 1000); // 21 days window
 
   // Helper to check if a specific 30-min slot is free for all users
   const isSlotViable = (slotStart: Date, slotEnd: Date): number => {

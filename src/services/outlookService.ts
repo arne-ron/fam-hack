@@ -106,11 +106,14 @@ export const getCalendarEvents = async (start: string, end: string): Promise<Cal
         startDateTime: start,
         endDateTime: end,
       })
-      .select("id,subject,start,end,isAllDay")
+      .select("id,start,end,isAllDay")
       .get();
 
-    console.log(`Successfully fetched ${response.value.length} events`);
-    return response.value;
+    console.log(`Successfully fetched ${response.value.length} events (subjects redacted)`);
+    return response.value.map((e: any) => ({
+      ...e,
+      subject: "Busy" // Redact subject
+    }));
   } catch (err) {
     console.error("Graph API Error: ", err);
     return [];

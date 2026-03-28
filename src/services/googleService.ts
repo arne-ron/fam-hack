@@ -1,8 +1,9 @@
 import { googleConfig } from "../config/authConfig";
 
 let googleAccessToken: string | null = null;
+let googleUserEmail: string | null = null;
 
-export const loginGoogle = (): Promise<string> => {
+export const loginGoogle = (): Promise<{ token: string, email: string }> => {
   return new Promise((resolve, reject) => {
     // @ts-ignore
     const google = window.google;
@@ -11,13 +12,26 @@ export const loginGoogle = (): Promise<string> => {
     const client = google.accounts.oauth2.initTokenClient({
       client_id: googleConfig.clientId,
       scope: googleConfig.scopes,
-      callback: (response: any) => {
+      callback: async (response: any) => {
         if (response.error_description) {
           reject(response.error_description);
         } else {
           googleAccessToken = response.access_token;
-          console.log("Google Access Token Acquired");
-          resolve(response.access_token);
+          
+          // Fetch user info to get the email (used as unique ID)
+          try {
+            const userInfoResponse = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+              headers: { Authorization: `Bearer ${googleAccessToken}` }
+            });
+            const userInfo = await userInfoResponse.json();
+            console.log("Full User Info:", userInfo);
+            googleUserEmail = userInfo.email;
+            
+            console.log("Google Account Connected:", googleUserEmail);
+            resolve({ token: response.access_token, email: userInfo.email });
+          } catch (err) {
+            reject("Failed to fetch user email");
+          }
         }
       },
     });
@@ -29,7 +43,6 @@ export const loginGoogle = (): Promise<string> => {
 export const getGoogleCalendarEvents = async (start: string, end: string) => {
   if (!googleAccessToken) throw new Error("No Google access token found. Please login first.");
 
-  // We use fetch instead of gapi.client for a cleaner modern flow
   const response = await fetch(
     `https://www.googleapis.com/calendar/v3/calendars/primary/events?timeMin=${start}&timeMax=${end}&singleEvents=true&orderBy=startTime`,
     {
@@ -45,11 +58,11 @@ export const getGoogleCalendarEvents = async (start: string, end: string) => {
   }
 
   const data = await response.json();
-  console.log("Google Events Found:", data.items?.length || 0);
+  console.log("Google Events Found:", data.items?.length || 0, "(redacted)");
 
   return (data.items || []).map((event: any) => ({
     id: event.id,
-    subject: event.summary || "(No Title)",
+    subject: "Busy", // Redact subject
     start: { dateTime: event.start.dateTime || event.start.date },
     end: { dateTime: event.end.dateTime || event.end.date },
   }));
