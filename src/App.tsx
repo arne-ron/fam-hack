@@ -29,7 +29,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/availability" element={<Availability />} />
-          <Route path="/calendar" element={<HomePage />} />
+          {/* <Route path="/calendar" element={<HomePage />} /> */}
           <Route path="/preferences" element={<SelectEventPreferences />} />
         </Routes>
         <footer className="footer">

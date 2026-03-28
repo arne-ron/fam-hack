@@ -36,11 +36,11 @@ const Navbar: React.FC = () => {
             Availability
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/calendar" className={({ isActive }) => isActive ? "active" : ""}>
             Calendar
           </NavLink>
-        </li>
+        </li> */}
         <li>
           <NavLink to="/preferences" className={({ isActive }) => isActive ? "active" : ""}>
             Preferences
