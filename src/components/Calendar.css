@@ -1,0 +1,88 @@
+.custom-react-calendar {
+  width: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  font-family: var(--sans) !important;
+}
+
+.custom-react-calendar .react-calendar__tile {
+  padding: 12px 8px !important;
+  border-radius: 8px !important;
+  transition: all 0.2s !important;
+}
+
+.custom-react-calendar .react-calendar__tile--active {
+  background: var(--accent) !important;
+  color: white !important;
+}
+
+.custom-react-calendar .react-calendar__tile--now {
+  background: var(--accent-bg) !important;
+  color: var(--accent) !important;
+}
+
+.custom-react-calendar .react-calendar__tile:hover {
+  background: var(--border) !important;
+}
+
+.custom-react-calendar .react-calendar__navigation button {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: var(--text-h) !important;
+}
+
+.event-tile {
+  position: relative;
+}
+
+.event-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.academic .event-dot { background: #3b82f6; }
+.social .event-dot { background: #10b981; }
+.tradition .event-dot { background: #f59e0b; }
+
+.upcoming-list {
+  margin-top: 24px;
+  text-align: left;
+}
+
+.upcoming-list h3 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.upcoming-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.upcoming-item:last-child {
+  border-bottom: none;
+}
+
+.event-date-small {
+  font-weight: 600;
+  color: var(--text-h);
+  min-width: 50px;
+}
+
+.event-title-small {
+  color: var(--text);
+}
