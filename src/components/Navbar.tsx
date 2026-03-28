@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -33,15 +34,15 @@ const Navbar: React.FC = () => {
       </div>
       <ul className="nav-links">
         <li>
-          <a href="/" className="active">
+          <Link to="/" className="active">
             Home
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="/availability">Availability</a>
+          <Link to="/availability">Availability</Link>
         </li>
         <li>
-          <a href="/calendar">Calendar</a>
+          <Link to="/calendar">Calendar</Link>
         </li>
         <li>
           <a href={'/preferences'}>Preferences</a>
