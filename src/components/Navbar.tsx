@@ -27,20 +27,24 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="navbar">
+      {/*<Link to={"/"}>Test</Link>*/}
       <div className="nav-brand">
         <span className="family-name">Family Name</span>
       </div>
       <ul className="nav-links">
         <li>
-          <a href="#" className="active">
+          <a href="/" className="active">
             Home
           </a>
         </li>
         <li>
-          <a href="#">Availability</a>
+          <a href="/availability">Availability</a>
         </li>
         <li>
-          <a href="#">Calendar</a>
+          <a href="/calendar">Calendar</a>
+        </li>
+        <li>
+          <a href={'/preferences'}>Preferences</a>
         </li>
       </ul>
       <div className="nav-actions">

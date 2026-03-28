@@ -24,7 +24,7 @@ function SelectEventPreferences() {
         <div className={'w-full'}>
             <h1>Event Options</h1>
             <p> What events would you like to see? </p>
-            <div className={'flex-col space-y-2 p-3'}>
+            <div className={'flex-col space-y-2 p-3 w-full'}>
                 {options.map(option =>
                     <div className={'flex gap-2 bg-gray-200 p-3 rounded-l'} key={option}>
                         <input
