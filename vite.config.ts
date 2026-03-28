@@ -13,4 +13,12 @@ export default defineConfig({
   optimizeDeps: {
     include: ['tslib', '@microsoft/microsoft-graph-client']
   }
+import tailwindcss from "@tailwindcss/vite";
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [
+      react(),
+      tailwindcss(),
+  ],
 })
