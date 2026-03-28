@@ -1,44 +1,48 @@
-import {useState} from "react";
+import React, { useState } from "react";
+
+interface EventOption {
+    name: string;
+    chosenBy: string[];
+}
 
 function SelectEventPreferences() {
-    const [options, setOptions] = useState<{name: string, chosenBy: string[]}[]>([
+    const [options, setOptions] = useState<EventOption[]>([
         {name: "Boardgame night", chosenBy: ["Tom", "Paul"]},
         {name: "Arthurs Seat Hike", chosenBy: []},
         {name: "Pub quiz", chosenBy: ["Karl"]},
         {name: "National Museum", chosenBy: []},
         {name: "Pool at Teviot", chosenBy: []}
     ])
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState<Record<string, boolean>>({});
     const [suggestion, setSuggestion] = useState<string>("")
 
-    const handleChange = (e) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const username = "TestUser"
-
         const target = e.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const value = target.checked;
         const name = target.name;
-        setInputs(values => ({...values, [name]: value}))
-        let others = options.filter(o => o.name !== name)
-        let selected = options.find(o => o.name === name)
-        if (value) {
-            if (!selected!.chosenBy.includes(username)) {
-                selected!.chosenBy.push(username)
 
-            }
-        } else {
-            selected!.chosenBy = selected!.chosenBy.filter(name => name != username)
-        }
-        setOptions([...others, selected])
+        setInputs(prev => ({...prev, [name]: value}))
+        
+        setOptions(prevOptions => {
+            return prevOptions.map(opt => {
+                if (opt.name === name) {
+                    const newChosenBy = value 
+                        ? (opt.chosenBy.includes(username) ? opt.chosenBy : [...opt.chosenBy, username])
+                        : opt.chosenBy.filter(u => u !== username);
+                    return { ...opt, chosenBy: newChosenBy };
+                }
+                return opt;
+            });
+        });
     }
-
-
 
     return (
         <div className={'w-full'}>
             <h1>Event Options</h1>
             <p> What events would you like to see? </p>
             <div className={'flex-col space-y-3 p-3 w-full'}>
-                {options
+                {[...options]
                     .sort((o1, o2) => o2.chosenBy.length - o1.chosenBy.length)
                     .map(option =>
                     <div className={'flex bg-gray-100 gap-2 dark:bg-gray-800 p-3 rounded-l items-center w-full'} key={option.name}>
@@ -53,7 +57,7 @@ function SelectEventPreferences() {
                         <p className={'text-xs'}>{"Chosen by " + option.chosenBy.length + " others"}</p>
                     </div>
                 )}
-                <p>Make your own suggestion</p>
+                <p className="mt-6 font-semibold dark:text-gray-100">Make your own suggestion</p>
                 <div className={'flex gap-2'}>
                     <input
                         onChange={(e) => setSuggestion(e.target.value)}
@@ -66,7 +70,7 @@ function SelectEventPreferences() {
                         type={"button"}
                         onClick={() => {
                             if (suggestion.trim() === "") return
-                            setOptions(options => ([...options, {name: suggestion, chosenBy: []}]));
+                            setOptions(prev => ([...prev, {name: suggestion, chosenBy: []}]));
                             setSuggestion("")
                         }}
                         className={'bg-green-100 dark:bg-green-700 dark:text-white p-2 rounded-s transition-colors hover:bg-green-200 dark:hover:bg-green-600'}
@@ -79,4 +83,4 @@ function SelectEventPreferences() {
     )
 }
 
-export default SelectEventPreferences
+export default SelectEventPreferences;
