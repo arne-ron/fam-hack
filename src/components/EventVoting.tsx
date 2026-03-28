@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const EventVoting: React.FC = () => {
+  const navigate = useNavigate();
   const suggestions = [
     { id: "quiz", name: "Pub Quiz 🍻", suggestedBy: "?" },
     { id: "games", name: "Board Game Night 🎲", suggestedBy: "?" },
@@ -28,7 +30,7 @@ const EventVoting: React.FC = () => {
               <div className="suggestion-actions">
                 <button
                   className="action-btn vote-time"
-                  onClick={() => (window.location.href = "/availability")}
+                  onClick={() => navigate("/availability")}
                 >
                   Vote Date and Time
                 </button>

@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
-    // Initial check for system preference or manual set
     if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme") as
-        | "light"
-        | "dark"
-        | null;
+      const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
       if (savedTheme) return savedTheme;
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
     return "light";
   });
@@ -32,15 +27,19 @@ const Navbar: React.FC = () => {
       </div>
       <ul className="nav-links">
         <li>
-          <a href="#" className="active">
+          <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>
             Home
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href="#">Availability</a>
+          <NavLink to="/availability" className={({ isActive }) => isActive ? "active" : ""}>
+            Availability
+          </NavLink>
         </li>
         <li>
-          <a href="#">Calendar</a>
+          <NavLink to="/calendar" className={({ isActive }) => isActive ? "active" : ""}>
+            Calendar
+          </NavLink>
         </li>
       </ul>
       <div className="nav-actions">
