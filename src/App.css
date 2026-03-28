@@ -213,6 +213,127 @@
   filter: brightness(1.1);
 }
 
+/* Voting/Suggestion Section Styles */
+.voting-section {
+  margin-bottom: 40px;
+}
+
+.voting-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.voting-header h2 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+}
+
+.voting-header p {
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.suggestion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.suggestion-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.suggestion-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.suggestion-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.suggestion-name {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text-h);
+}
+
+.suggestion-meta {
+  font-size: 12px;
+  color: var(--text);
+}
+
+.suggestion-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+
+.vote-event {
+  background: var(--accent);
+  color: white;
+}
+
+.vote-time {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.action-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.voting-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.suggest-btn-outline.full-width {
+  width: 100%;
+}
+
+.suggest-btn-outline {
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-h);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.suggest-btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-bg);
+}
+
 /* Recent Updates */
 .recent-updates h2 {
   text-align: left;

@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import EventHero from "./components/EventHero";
+import EventVoting from "./components/EventVoting";
 import Calendar from "./components/Calendar";
 import "./App.css";
 
@@ -10,20 +11,10 @@ function App() {
       <main className="home-content">
         <div className="main-column">
           <EventHero />
+          <EventVoting />
         </div>
         <aside className="side-column">
           <Calendar />
-          <div className="quick-stats">
-            <h3>Quick Stats</h3>
-            <div className="stat">
-              <span>Members Active</span>
-              <strong>12 / 15</strong>
-            </div>
-            <div className="stat">
-              <span>Next Event</span>
-              <strong>12 Days</strong>
-            </div>
-          </div>
         </aside>
       </main>
       <footer className="footer">
