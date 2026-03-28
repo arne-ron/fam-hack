@@ -2,7 +2,7 @@ import { LogLevel, type Configuration } from "@azure/msal-browser";
 
 export const msalConfig: Configuration = {
   auth: {
-    clientId: import.meta.env.VITE_MICROSOFT_CLIENT_ID,
+    clientId: import.meta.env.VITE_MICROSOFT_CLIENT_ID || "PLACEHOLDER",
     authority: "https://login.microsoftonline.com/common",
     redirectUri: window.location.origin,
   },
@@ -44,6 +44,6 @@ export const graphConfig = {
 };
 
 export const googleConfig = {
-  clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+  clientId: import.meta.env.VITE_GOOGLE_CLIENT_ID || "PLACEHOLDER",
   scopes: "https://www.googleapis.com/auth/calendar.events.readonly https://www.googleapis.com/auth/userinfo.email",
 };
