@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import EventHero from "./components/EventHero";
 import EventVoting from "./components/EventVoting";
@@ -23,13 +23,12 @@ function HomePage() {
 
 function App() {
   return (
-    <Router basename="/fam-hack/">
+    <Router>
       <div className="app-container">
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/availability" element={<Availability />} />
-          {/* <Route path="/calendar" element={<HomePage />} /> */}
           <Route path="/preferences" element={<SelectEventPreferences />} />
         </Routes>
         <footer className="footer">
