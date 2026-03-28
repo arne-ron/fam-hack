@@ -44,6 +44,33 @@
   color: var(--accent);
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s;
+  background: var(--social-bg);
+}
+
+.theme-toggle:hover {
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+  transform: scale(1.05);
+}
+
 .profile-btn {
   padding: 8px 16px;
   border-radius: 20px;
@@ -214,7 +241,7 @@
   color: var(--text);
 }
 
-/* Calendar Styles */
+/* Calendar Section Container */
 .calendar-section {
   background: var(--bg);
   border: 1px solid var(--border);
@@ -244,52 +271,6 @@
   border: none;
   cursor: pointer;
   font-weight: 600;
-}
-
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-}
-
-.day-name {
-  font-size: 12px;
-  font-weight: 600;
-  padding: 8px 0;
-  color: var(--text);
-  text-transform: uppercase;
-}
-
-.calendar-day {
-  aspect-ratio: 1;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 4px;
-  font-size: 12px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.calendar-day.disabled {
-  opacity: 0.3;
-}
-
-.calendar-day.event {
-  background: var(--accent-bg);
-  border-color: var(--accent-border);
-}
-
-.calendar-day.event.highlighted {
-  box-shadow: 0 0 0 2px var(--accent);
-}
-
-.calendar-day .event-label {
-  font-size: 8px;
-  margin-top: auto;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 /* Quick Stats */
