@@ -8,7 +8,6 @@ export const msalConfig: Configuration = {
   },
   cache: {
     cacheLocation: "sessionStorage",
-    secureCookies: false,
   },
   system: {
     loggerOptions: {
