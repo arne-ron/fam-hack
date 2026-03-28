@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import {Link} from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [theme, setTheme] = useState<"light" | "dark">(() => {
-    // Initial check for system preference or manual set
     if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme") as
-        | "light"
-        | "dark"
-        | null;
+      const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null;
       if (savedTheme) return savedTheme;
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
     }
     return "light";
   });
@@ -34,6 +29,19 @@ const Navbar: React.FC = () => {
       </div>
       <ul className="nav-links">
         <li>
+          <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/availability" className={({ isActive }) => isActive ? "active" : ""}>
+            Availability
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/calendar" className={({ isActive }) => isActive ? "active" : ""}>
+            Calendar
+          </NavLink>
           <Link to="/" className="active">
             Home
           </Link>
