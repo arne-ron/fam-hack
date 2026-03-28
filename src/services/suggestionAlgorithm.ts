@@ -11,7 +11,7 @@ export interface Suggestion {
 
 /**
  * FULL IMPLEMENTATION of the Weighted Multi-User Availability Algorithm
- * 1. Divide next 7 days into 30-min slots
+ * 1. Divide next 21 days into 30-min slots
  * 2. Mark slots as busy/free for all users
  * 3. Apply family-specific scoring weights
  */
@@ -21,7 +21,7 @@ export const findOptimalEventTimes = (
 ): Suggestion[] => {
   const suggestions: Suggestion[] = [];
   const now = new Date();
-  const searchStart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 9, 0, 0); // Start at 9 AM today
+  const searchStart = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 9, 0, 0); // Start at 9 AM today
   const searchEnd = new Date(searchStart.getTime() + 21 * 24 * 60 * 60 * 1000); // 21 days window
 
   // Helper to check if a specific 30-min slot is free for all users

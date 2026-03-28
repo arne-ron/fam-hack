@@ -23,8 +23,8 @@ function HomePage() {
 
 function App() {
   return (
-    <Router>
-      <div className="app-container">
+    <div className="app-container">
+      <Router>
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -34,8 +34,8 @@ function App() {
         <footer className="footer">
           <p>Built with ❤️ for FamHack 2026</p>
         </footer>
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
 
