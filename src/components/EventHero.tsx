@@ -3,7 +3,7 @@ import React from "react";
 const EventHero: React.FC = () => {
   return (
     <section className="event-hero">
-      <div className="event-label">Next Big Thing</div>
+      <div className="event-label">This week's event</div>
       <div className="event-card">
         <div className="event-details">
           <h1>End of Term Picnic</h1>
